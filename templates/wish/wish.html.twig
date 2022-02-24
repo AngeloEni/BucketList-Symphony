@@ -8,18 +8,17 @@
     
 {% endfor %} #}
 
-<!--Ajouter un voeux -->
-
-<a href="{{path('add')}}" class="btn btn-success mb-3"><i class="bi bi-plus-square"></i></a>
-
-
-<!-- tableau -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        
+        <!-- tableau -->
 
 <table class="table table-hover table-bordered" >
   <thead>
     <tr>
       <th scope="col">title</th>
-      <th scope="col">description</th>
+      
       <th scope="col">author</th>
         <th scope="col">date creation</th>
         <th scope="col">Detail/Supprimer</th>
@@ -29,7 +28,7 @@
 {% for wish in req %}
     <tr onclick="location.href='{{ path('detail', {'id':wish.id})}}'">
       <td>{{wish.title}}</td>
-      <td>{{wish.description}}</td>
+ 
       <td>{{wish.author}}</td>
       <td>{{wish.dateCreated | date}}</td>
       <!--Supprimer un voeux -->
@@ -48,7 +47,89 @@
 
 </table>
 
+        
+        
+        
+        
+        
+        </div>
+        <div class="col-md-6">
+        
+        
+        <!-- formulaire pour ajouter un souhait -->
+
+<form class="form-horizontal" action="{{ path('addby') }}" method="post">
+
+<!-- Text input-->
+<div class="form-group">
+  <label class=" control-label" for="title">titre</label>  
+  <div class="">
+  <input id="title" name="title" type="text" placeholder="ici votre titre" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class=" control-label" for="Description">Description</label>
+  <div class="">                     
+    <textarea class="form-control" id="Description" name="Description" placeholder="ici votre description"></textarea>
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class=" control-label" for="author">Auteur</label>
+  <div class="">
+    <input id="author" name="author" type="text" placeholder="votre nom" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class=" control-label" for="radios">published</label>
+  <div class="">
+  <div class="radio">
+    <label for="radios-0">
+      <input type="radio" name="radios" id="radios-0" value="true" checked="checked">
+      publish
+    </label>
+	</div>
+  <div class="radio">
+    <label for="radios-1">
+      <input type="radio" name="radios" id="radios-1" value="false">
+      not publish
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="control-label" for="submit"></label>
+  <div class="">
+    <button id="submit" name="submit" class="btn btn-success">Ajouter</button>
+  </div>
+</div>
+
+
+</form>
+        
+        
+        
+        
+        
+        </div>
+    </div>
+</div>
+
+
+
+
 
 <p>crédit : Angélo Fernandes<p>
+
+
 
 {% endblock %}

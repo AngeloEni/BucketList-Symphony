@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+ 
+<div>
+{{form_start(formulaire)}}
+
+{{form_widget(formulaire)}}
+    <button id="submit" name="submit" class="btn btn-success">Ajouter</button>
+
+{{form_end(formulaire)}}
+
+</div>
+
+{% endblock %}
