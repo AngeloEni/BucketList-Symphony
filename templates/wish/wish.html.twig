@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+{# {% for wish in list %}
+    <p>{{wish}}</p>
+    <a class="nav-link" href="{{ path('detail', {wish})}}">- detail -</a> 
+    
+{% endfor %} #}
+
+<!--Ajouter un voeux -->
+
+<a href="{{path('add')}}" class="btn btn-success mb-3"><i class="bi bi-plus-square"></i></a>
+
+
+<!-- tableau -->
+
+<table class="table table-hover table-bordered" >
+  <thead>
+    <tr>
+      <th scope="col">title</th>
+      <th scope="col">description</th>
+      <th scope="col">author</th>
+        <th scope="col">date creation</th>
+        <th scope="col">Detail/Supprimer</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for wish in req %}
+    <tr onclick="location.href='{{ path('detail', {'id':wish.id})}}'">
+      <td>{{wish.title}}</td>
+      <td>{{wish.description}}</td>
+      <td>{{wish.author}}</td>
+      <td>{{wish.dateCreated | date}}</td>
+      <!--Supprimer un voeux -->
+      
+      <td>
+            <a href="{{ path('detail', {'id':wish.id})}}" class="btn btn-warning">
+            <i class="bi bi-eye"></i>
+            </a>
+            <a href="{{path('delete', {'id':wish.id} )}}" class="btn btn-danger">
+            <i class="bi bi-x-square"></i>
+            </a>
+            </td>
+    </tr>
+{% endfor %}
+  </tbody>
+
+</table>
+
+
+
+
+{% endblock %}
